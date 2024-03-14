@@ -1,9 +1,22 @@
+import Header from "./components/Header"
+import ProfileInfo from "./components/ProfileInfo"
+import Card from "./components/Card"
 
 function App() {
-
   return (
     <>
-      <h2 className="font-bold underline">svsHello</h2>
+      <Header />
+      <ProfileInfo />
+      
+      <>
+        <h2 className="">Github</h2>
+        <p className="">How people build software</p>
+
+        <div className="">
+          <Card />
+        </div>
+
+      </>
     </>
   )
 }
