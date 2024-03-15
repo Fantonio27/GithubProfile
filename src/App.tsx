@@ -4,20 +4,20 @@ import Card from "./components/Card"
 
 function App() {
   return (
-    <>
+    <div className=" bg-CDarkgray h-screen">
       <Header />
       <ProfileInfo />
       
-      <>
-        <h2 className="">Github</h2>
-        <p className="">How people build software</p>
+      <div>
+        <h2 className=" text-4xl text-CGray">Github</h2>
+        <p className=" text-lg text-CGray ">How people build software.</p>
 
-        <div className="">
+        <div className=" columns-2">
+          <Card />
           <Card />
         </div>
-
-      </>
-    </>
+      </div>
+    </div>
   )
 }
 

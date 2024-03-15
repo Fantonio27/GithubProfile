@@ -1,4 +1,6 @@
-export type Username = {
-
+export type User = {
+    Followers: number,
+    Following: number,
+    Location: string
 }
 
