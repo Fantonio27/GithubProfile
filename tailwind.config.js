@@ -18,9 +18,9 @@ export default {
         CLightGray: '#4A5567',
         CGray: '#CDD5E0',
       },
-      fontFamily: {
-        'VietnamPro': '"Be Vietnam Pro", sans-serif' 
-      }
+      // fontFamily: {
+      //   'VietnamPro': '"Be Vietnam Pro", sans-serif' 
+      // }
     },
   },
   plugins: [],
