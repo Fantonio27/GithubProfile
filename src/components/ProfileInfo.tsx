@@ -2,10 +2,12 @@ import {type User} from "../Type"
 
 function ProfileInfo(){
     const userInfo: User = {
+        Username: '',
+        Bio: '',
         Profile: 'fsfa',
         Followers: 27839,
         Following: 0,
-        Location: 'San Francisco, CA'
+        Location: 'San Francisco, CA',
     }
     return (
         <div className="flex gap-10 items-end relative bottom-10">
@@ -16,7 +18,7 @@ function ProfileInfo(){
             <div className="flex gap-5 mb-[0.35rem]">
                 {
                     Object.keys(userInfo).map((info, index)=>{
-                        return (
+                        return index > 2 && (
                             <div className="bg-CBlack flex h-max py-3 rounded-xl font-bold" key={index}>
                                 <p className="px-5 py-1 border-r-[0.1rem] border-CLightGray text-CLightGray font-VietnamPro">{info}</p>
                                 <p className="px-5 py-1 text-CGray font-VietnamPro">{userInfo[info as keyof typeof userInfo]}</p>
