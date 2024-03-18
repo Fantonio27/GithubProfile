@@ -7,69 +7,51 @@ import { userContext } from "./context"
 
 function App() {
   const defaultUser = useRef({
-      Profile: '',
-      Username: 'Github',
-      Followers: 27839,
-      Following: 0,
-      Location: 'San Francisco, Ca',
-      Bio: 'How people build software.'
+      profile: '',
+      username: 'Github',
+      bio: 'How people build software.',
+      followers: 27839,
+      following: 0,
+      location: 'San Francisco, Ca',
   })
 
   const [userProfile, setUserProfile] = useState<User>(defaultUser.current)
-  
-  const [username, setUsername] = useState<string>("")
 
   const FetchRepository = async() => {
     const response = await fetch('https://api.github.com/users/Fantonio27')
     const data = await response.json()
 
-    setUserProfile({
-      Profile: data.avatar_url,
-      Username: data.login,
-      Followers: data.followers,
-      Following: data.following,
-      Location: data.avatar_url,
-      Bio: data.bio,
-    })
+    // setUserProfile({
+    //   profile: data.avatar_url,
+    //   username: data.login,
+    //   followers: data.followers,
+    //   following: data.following,
+    //   location: data.avatar_url,
+    //   bio: data.bio,
+    // })
   }
 
-  const FetchUser = async(user : string, action : number) => {
+  const FetchUser = async(user : string) => {
     const response = await fetch(`https://api.github.com/users/${user}`)
     const data = await response.json()
 
-    if(action == 0 && !data.message){
-      setUserProfile((props)=> ({
-        ...props,
-        Profile: data.avatar_url,
-        Username: data.login,
-        Bio: data.bio
-      }))
-    }else if (action == 0 && !data.message){
-      setUserProfile((props)=> ({
-        ...props,
-        Followers: data.followers,
-        Following: data.following,
-        Location: data.location,
-      }))
-    }else{
-      setUserProfile(defaultUser.current)
-    }
-  }
-
-  const OnChangeValue = (event:any) => {
-    const {value} = event.target
-    setUsername(value)
-
-    FetchUser(value ,0)
+    setUserProfile(({
+      profile: data.avatar_url,
+      username: data.login,
+      bio: data.bio,
+      followers: data.followers,
+      following: data.following,
+      location: data.location,
+    }))
   }
 
   return (
     <div className=" bg-CDarkgray h-screen">
-      <userContext.Provider value={{state: OnChangeValue , username: username, found: userProfile.Username != "Github", userprofile: userProfile}}>
+      <userContext.Provider value={{state: FetchUser}}>
         <Header />
       </userContext.Provider>
       <div className=" w-7/12 m-auto">
-        <ProfileInfo />
+        <ProfileInfo data={userProfile}/>
         
         <section>
           <h2 className=" text-4xl text-CGray relative bottom-2" >GitHub</h2>

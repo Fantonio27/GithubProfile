@@ -1,16 +1,19 @@
 export type User = {
-    Profile: string,
-    Username: string,
-    Bio: string,
-    Followers: number,
-    Following: number,
-    Location: string,
+    profile: string,
+    username: string,
+    bio: string,
+    followers: number,
+    following: number,
+    location: string,
 }
 
 export type Username = {
-    username: string,
-    state: (val: any)=> void,
-    found: boolean,
-    userprofile: User
+    // username: string,
+    state: (user: string)=> void,
+    // found: boolean,
+    // userprofile: User
 }
+
+export type UserTab = Pick<User, "profile" | "username" | "bio"  >
+
 

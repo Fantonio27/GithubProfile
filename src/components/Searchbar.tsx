@@ -1,9 +1,44 @@
-import { useContext } from "react"
+import { useContext, useRef, useState } from "react"
 import { userContext } from "../context"
 import SearchFound from "./SearchFound"
+import { UserTab } from "../Type"
 
 function SearchBar(){
     const user = useContext(userContext)
+
+    const ref = useRef({
+        profile: "",
+        username: "Github",
+        bio: "How people build software."
+    })
+
+    const [searchField, setSearchField] = useState("")
+
+    const [dataform, setDataform] = useState<UserTab>(ref.current)
+
+    const FetchSingleUser = async(value:string) => {
+        try{
+            const response = await fetch(`https://api.github.com/users/${value}`)
+            const data = await response.json()
+
+            setDataform({
+                profile: data.avatar_url,
+                username: data.login,
+                bio: data.bio
+              })
+
+        }catch(err){
+            setDataform(ref.current)
+        }
+           
+    }
+    
+    const onchange = (event : any) => {
+        const {value} = event.target;
+
+        setSearchField(value)
+        FetchSingleUser(value)
+    }
 
     return (
         <div className="w-3/12 m-auto">
@@ -16,14 +51,17 @@ function SearchBar(){
                 <input 
                     type="text" 
                     className=" bg-transparent w-[30rem] text-CGray placeholder:text-CLightGray 
-                    font-VietnamPro font-bold focus:outline-none tracking-wide" 
+                    font-medium focus:outline-none" 
                     placeholder="username"
-                    value={user?.username}
-                    onChange={user?.state}
+                    value={searchField}
+                    onChange={onchange}
                 />
             </div>
             
-            <SearchFound />
+            {dataform.username != 'Github' &&
+                <SearchFound data={dataform}/>
+            }
+
         </div>
       
     )
