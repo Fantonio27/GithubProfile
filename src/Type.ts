@@ -7,13 +7,20 @@ export type User = {
     location: string,
 }
 
-export type Username = {
-    // username: string,
-    state: (user: string)=> void,
-    // found: boolean,
-    // userprofile: User
+export type Repo = {
+    name: string,
+    description: string | null,
+    license: null | boolean,
+    forks_count: number,
+    stargazers_count: number,
+    updated_at: string,
+    html_url: string,
 }
 
-export type UserTab = Pick<User, "profile" | "username" | "bio"  >
+export type Username = {
+    state: (user: string)=> void,
+}
+
+export type UserTab = Pick<User, "profile" | "username" | "bio"> 
 
 
