@@ -51,21 +51,22 @@ function App() {
     FetchRepository(user)
   }
 
-  const number = all? 4 : repository.length
+  const number = all? 4 : repository.length;
+
   return (
     <div className=" bg-CDarkgray pb-12">
       <userContext.Provider value={{state: FetchUser}}>
         <Header />
       </userContext.Provider>
 
-      <div className=" w-7/12 m-auto">
+      <div className=" w-10/12 m-auto 2xl:w-7/12 md:w-[85%]">
         <ProfileInfo data={userProfile}/>
         
-        <section className="md:mt-14 sm:mt-14">
-          <h2 className=" text-4xl text-CGray relative bottom-2" >{userProfile.username}</h2>
+        <section className="">
+          <h2 className=" text-4xl text-CGray relative mt-14 bottom-2 lg:mt-0" >{userProfile.username}</h2>
           <p className=" text-lg text-CLightGray ">{userProfile.bio == ""? 'No bio': userProfile.bio}</p>
 
-          <div className="mt-8 mb-10 grid grid-cols-2 gap-8">
+          <div className="mt-8 mb-10 grid grid-cols-1 gap-8 lg:grid-cols-2 ">
             {
               repository.length == 0? "0 Projects":
               repository.slice(0,number).map((repo,index)=> {
