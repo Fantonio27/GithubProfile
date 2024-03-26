@@ -75,6 +75,7 @@ function App() {
 
           <div className="mt-8 mb-10 grid grid-cols-2 gap-8">
             {
+              repository.length == 0? "0 Projects":
               repository.slice(0,number).map((repo,index)=> {
                 return(
                   <Card data={repo} key={index}/>
