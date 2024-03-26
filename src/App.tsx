@@ -1,24 +1,16 @@
 import Header from "./components/Header"
 import ProfileInfo from "./components/ProfileInfo"
 import Card from "./components/Card"
-import { useEffect, useState } from "react"
+import {useState } from "react"
 import { User, Repo } from "./Type"
 import { userContext } from "./context"
-import data from "./assets/dataset.js"
+import {repositories, defaultUser} from "./assets/dataset.js"
 
 function App() {
-  const defaultUser = {
-      profile: "",
-      username: 'Github',
-      bio: 'How people build software.',
-      followers: 27839,
-      following: 0,
-      location: 'San Francisco, Ca',
-  }
 
   const [userProfile, setUserProfile] = useState<User>(defaultUser)
-  const [repository, setRepository] = useState<Repo[]>(data)
-  const [no, setNo] = useState(false)
+  const [repository, setRepository] = useState<Repo[]>(repositories)
+  const [all, setAll] = useState(false)
 
   const FetchRepository = async(user: string) => {
     try{
@@ -39,7 +31,7 @@ function App() {
         }]))
       })
     }catch(err){
-      setRepository(data)
+      setRepository(repositories)
     }
   }
 
@@ -59,7 +51,7 @@ function App() {
     FetchRepository(user)
   }
 
-  const number = no? 4 : repository.length
+  const number = all? 4 : repository.length
   return (
     <div className=" bg-CDarkgray pb-12">
       <userContext.Provider value={{state: FetchUser}}>
@@ -83,7 +75,7 @@ function App() {
               }) 
             }
           </div>
-          <p className=" text-center text-CGray cursor-pointer font-bold" onClick={()=>setNo(props => !props)}>View all repositories</p>
+          <p className=" text-center text-CGray cursor-pointer font-bold" onClick={()=>setAll(props => !props)}>View all repositories</p>
         </section>
       </div>
     </div>

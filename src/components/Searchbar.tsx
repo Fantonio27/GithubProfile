@@ -1,18 +1,13 @@
-import {useState } from "react"
+import { useState } from "react"
 import SearchFound from "./SearchFound"
 import { UserTab } from "../Type"
+import {defaultSearch} from "../assets/dataset"
 
 function SearchBar(){
 
-    const ref = {
-        profile: "",
-        username: "Github",
-        bio: "How people build software.",
-    }
-
     const [searchField, setSearchField] = useState("")
 
-    const [dataform, setDataform] = useState<UserTab>(ref)
+    const [dataform, setDataform] = useState<UserTab>(defaultSearch)
 
     const FetchSingleUser = async(value:string) => {
         try{
@@ -26,7 +21,7 @@ function SearchBar(){
               })
 
         }catch(err){
-            setDataform(ref)
+            setDataform(defaultSearch)
         }
     }
     
@@ -39,7 +34,7 @@ function SearchBar(){
 
     const clear = () => {
        setSearchField("")
-       setDataform(ref)
+       setDataform(defaultSearch)
     }
 
     return (
@@ -60,7 +55,8 @@ function SearchBar(){
                 />
             </div>
             
-            {dataform.username != 'Github' &&
+            {
+                dataform.username != 'Github' &&
                 <SearchFound data={dataform} reset={clear}/>
             }
         </div>

@@ -1,9 +1,9 @@
 import {type User} from "../Type"
-import imga from "../assets/github-mark-white.png"
+import githubLogo from "../assets/github-mark-white.png"
 
 function ProfileInfo({ data }: {data : User}){
 
-    const img = data.profile == ""? imga :data.profile;
+    const img = data.profile == ""? githubLogo :data.profile;
 
     return (
         <div className="flex gap-10 items-end relative bottom-10">

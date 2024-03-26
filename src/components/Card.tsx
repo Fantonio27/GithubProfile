@@ -1,7 +1,7 @@
 import { Repo } from "../Type"
 
 function Card({data} : {data: Repo}){
-    const {name,description,license, forks_count,stargazers_count, updated_at, html_url} = data
+    const {name, description, license, forks_count, stargazers_count, updated_at, html_url} = data
 
     const updateDate = new Date(updated_at);
     const currentDate = new Date();
@@ -9,7 +9,6 @@ function Card({data} : {data: Repo}){
     var timeDiff = currentDate.getTime() - updateDate.getTime();
 
     var daysPassed = Math.floor(timeDiff / (1000 * 3600 * 24));
-
    
     return (
         <a href={html_url} target="_blank">

@@ -3,7 +3,6 @@ import { userContext } from "../context"
 import { UserTab } from "../Type"
 import Image from "../assets/github-mark-white.png"
 
-
 function SearchFound( {data, reset } : {data: UserTab, reset: ()=> void}){
     const user = useContext(userContext)
 
