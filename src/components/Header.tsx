@@ -2,7 +2,7 @@ import SearchBar from "./Searchbar"
 
 function Header(){
     return (
-        <header className="w-full h-[22rem] bg-my-image bg-cover bg-center">
+        <header className="w-full h-[16rem] bg-my-image bg-cover bg-center">
             <div className="pt-6">
                 <SearchBar />
             </div>
